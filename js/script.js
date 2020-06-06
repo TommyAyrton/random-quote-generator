@@ -7,7 +7,8 @@ project 1 - A Random Quote Generator
   // Check the "Project Resources" section of the project instructions
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-/*** 
+/***
+ * Returns a random quote of an array of objects
  * `quotes` array 
 ***/
 const quotes = [
@@ -17,15 +18,21 @@ const quotes = [
   },
   {
     quote: "Mistakes are painful when they happen, but years later a collection of mistakes is what is called experience.",
-    source: "Denis Waitle"
+    source: "Denis Waitle",
+    citation: "Internet",
+    year: 1900
   },
   {
     quote: "The true university of these days is a collection of books.",
-    source: "Thomas Carlyle"
+    source: "Thomas Carlyle",
+    citation: "Web",
+    year: 1900
   },
   {
     quote: "I love people. Everybody. I love them, I think, as a stamp collector loves his collection. Every story, every incident, every bit of conversation is raw material for me.",
-    source: "Sylvia Plat"
+    source: "Sylvia Plat",
+    citation: "Web",
+    year: 1900
   },
   {
     quote: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
@@ -37,7 +44,9 @@ const quotes = [
   },
   {
     quote: "In a gentle way, you can shake the world.",
-    source: "Mahatma Gandhi"
+    source: "Mahatma Gandhi",
+    citation: "Internet",
+    year: 1900
   },
   {
     quote: "What we think, we become.",
@@ -55,9 +64,12 @@ const quotes = [
 
 /***
  * `getRandomQuote` function
+ * @param {Array} - The array of objects
 ***/
 const getRandomQuote = (array) => {
+  //Generate a random index between 0 and length of the array
   let indice = Math.floor(Math.random() * array.length);
+  //Return an array object according to the index
   return array[indice];
 }
 
@@ -65,11 +77,20 @@ const getRandomQuote = (array) => {
  * `printQuote` function
 ***/
 const printQuote = () => {
-  const object = getRandomQuote(quotes);  
+  const object = getRandomQuote(quotes); 
+  let i = '';
+  //Condition if the object has citation and year
+  if (object.hasOwnProperty("citation") && object.hasOwnProperty("year")) {
+    i = `
+    <span class = "citation">${object.citation}</span>
+    <span class = "year">${object.year}</span>
+    `;  
+  }
+  //Write the quote in the div quote-box
   return document.getElementById('quote-box').innerHTML = `
-    <p class="quote">${object.quote}</p>
-    <p class="source">${object.source}</p>
-  `;
+    <p class = "quote">${object.quote}</p>
+    <p class = "source">${object.source}${i}</p>
+  `;      
   }
 
 /***
