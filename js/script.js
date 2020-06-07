@@ -20,19 +20,19 @@ const quotes = [
     quote: "Mistakes are painful when they happen, but years later a collection of mistakes is what is called experience.",
     source: "Denis Waitle",
     citation: "Internet",
-    year: 1900
+    year: 1910
   },
   {
     quote: "The true university of these days is a collection of books.",
     source: "Thomas Carlyle",
     citation: "Web",
-    year: 1900
+    year: 1920
   },
   {
     quote: "I love people. Everybody. I love them, I think, as a stamp collector loves his collection. Every story, every incident, every bit of conversation is raw material for me.",
     source: "Sylvia Plat",
     citation: "Web",
-    year: 1900
+    year: 1930
   },
   {
     quote: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
@@ -46,7 +46,7 @@ const quotes = [
     quote: "In a gentle way, you can shake the world.",
     source: "Mahatma Gandhi",
     citation: "Internet",
-    year: 1900
+    year: 1940
   },
   {
     quote: "What we think, we become.",
@@ -75,15 +75,30 @@ const getRandomQuote = (array) => {
 
 /***
  * `printQuote` function
-***/
+ * Fist function
 const printQuote = () => {
   const object = getRandomQuote(quotes); 
   let i = '';
   //Condition if the object has citation and year
   if (object.hasOwnProperty("citation") && object.hasOwnProperty("year")) {
+  if (object["citation"] && object["year"]) {
     i = `
     <span class = "citation">${object.citation}</span>
     <span class = "year">${object.year}</span>
+      <span class = "citation">${object.citation}</span>
+      <span class = "year">${object.year}</span>
+    `;  
+  }
+***/
+const printQuote = () => {
+  const object = getRandomQuote(quotes); 
+  let i = '';
+  //Condition if the object has citation and year
+  //if (object.hasOwnProperty("citation") && object.hasOwnProperty("year")) {
+  if (object["citation"] && object["year"]) {
+    i = `
+      <span class = "citation">${object.citation}</span>
+      <span class = "year">${object.year}</span>
     `;  
   }
   //Write the quote in the div quote-box
@@ -92,7 +107,7 @@ const printQuote = () => {
     <p class = "source">${object.source}${i}</p>
   `;      
   }
-
+    
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
